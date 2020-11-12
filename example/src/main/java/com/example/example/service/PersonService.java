@@ -17,7 +17,7 @@ public class PersonService {
     private final PersonDao personDao;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDao") PersonDao personDao){
+    public PersonService(@Qualifier("postgres") PersonDao personDao){
         this.personDao=personDao;
 
     }
@@ -36,5 +36,15 @@ public class PersonService {
     public Optional<Person> getPersonById(UUID id){
 
         return personDao.selectPersonById(id);
+    }
+
+    public void deletePerson(UUID id){
+
+         personDao.deletePersonById(id);
+    }
+
+    public void updatePerson(UUID id,Person person){
+
+        personDao.updatePersonById(id, person);
     }
 }
